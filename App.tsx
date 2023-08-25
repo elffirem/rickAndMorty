@@ -1,28 +1,66 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  ImageBackground,
+} from 'react-native';
+import Container from './components/Container';
 
-const AdenImage = require('./android/assets/pic.jpg'); // Replace with actual image path
+const path = require('./assets/pic.jpg');
+const background = require('./assets/wallpaper.jpg');
+const data = [
+  {title: 'Title', subtitle1: 'Subtitle1', subtitle2: 'Subtitle2', image: path},
+  {title: 'Title', subtitle1: 'Subtitle1', subtitle2: 'Subtitle2', image: path},
+  {title: 'Title', subtitle1: 'Subtitle1', subtitle2: 'Subtitle2', image: path},
+  {title: 'Title', subtitle1: 'Subtitle1', subtitle2: 'Subtitle2', image: path},
+  {title: 'Title', subtitle1: 'Subtitle1', subtitle2: 'Subtitle2', image: path},
+  {title: 'Title', subtitle1: 'Subtitle1', subtitle2: 'Subtitle2', image: path},
+]; //dummy data
+
+function RickAndMortyHeader() {
+  return (
+    <View style={styles.headerContainer}>
+      <Text style={styles.headerText}>Rick and Morty</Text>
+    </View>
+  );
+}
 
 function App() {
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.rowContainer}>
-          <Image source={AdenImage} style={styles.image} />
-          <View style={styles.columnContainer}>
-            <Text style={styles.title}>Title</Text>
-            <Text style={styles.subtitle}>Subtitle 1</Text>
-            <Text style={styles.subtitle}>Subtitle 2</Text>
-          </View>
-        </View>
-        {/* Add more rows here */}
-        <View style={styles.rowContainer}>{/* ... */}</View>
-      </ScrollView>
+      <RickAndMortyHeader></RickAndMortyHeader>
+      <ImageBackground source={background} style={styles.imageBackground}>
+        <ScrollView>
+          {data.map((item, index) => (
+            <Container
+              title={item.title}
+              subtitle1={item.subtitle1}
+              subtitle2={item.subtitle2}
+              image={item.image}></Container>
+          ))}
+        </ScrollView>
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+
+    backgroundColor: 'lightgrey',
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'black',
+  },
   container: {
     flex: 1,
   },
@@ -32,7 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
     borderRadius: 20,
     padding: 16,
-    marginBottom: 16,
+    margin: 16,
   },
   image: {
     width: 100,
@@ -51,6 +89,10 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     color: 'gray',
+  },
+  imageBackground: {
+    flex: 1, // Take the full available space
+    resizeMode: 'cover', // Cover the entire background
   },
 });
 
