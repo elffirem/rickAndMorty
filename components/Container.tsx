@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
+import styles from '../styles';
 
 interface Props {
   image: any;
@@ -20,37 +21,5 @@ const Container = ({image, title, subtitle1, subtitle2}: Props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'lightgray',
-    borderRadius: 20,
-    padding: 16,
-    margin: 16,
-  },
-  image: {
-    width: 100,
-    height: 100,
-    marginRight: 16,
-    borderRadius: 10,
-  },
-  columnContainer: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: 'gray',
-  },
-});
 
 export default Container;
